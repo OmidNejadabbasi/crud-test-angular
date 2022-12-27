@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { hasError } from '../../utils/form-utils';
 import { numberValidatorOfRegion } from '../../validators/phone-number-validator';
 
 const { required, pattern, maxLength, email } = Validators;
@@ -14,15 +15,15 @@ export class CustomerFormComponent implements OnInit {
     lastName: ['', [required, pattern('[a-zA-Z0-9.]+'), maxLength(50)]],
     dateOfBirth: [Date.now(), [required]],
     phoneNumber: ['', numberValidatorOfRegion('IR')],
-    email: ['', required, email],
+    email: ['', [required, email]],
     bankAccountNum: [
       '',
-      required,
-      pattern('[1-9]{4}-[1-9]{4}-[1-9]{4}-[1-9]{4}'),
+      [required, pattern('[1-9]{4}-?[1-9]{4}-?[1-9]{4}-?[1-9]{4}')],
     ],
   });
 
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {}
+  hasError = hasError;
 }

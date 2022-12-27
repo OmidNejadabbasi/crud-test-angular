@@ -1,11 +1,36 @@
 <form [formGroup]="form">
   <app-text-field
-    [ngClass]="['error']"
-    [hasError]="
-      form.controls['firstName'].invalid &&
-      (form.controls['firstName'].dirty || form.controls['firstName'].touched)
-    "
+    title="First Name"
+    [hasError]="hasError(form.controls['firstName'])"
     [errorText]="form.controls['firstName'].errors?.['pattern']?'Allowed characters : A-Za-z1-9./':''"
     formControlName="firstName"
+  ></app-text-field>
+  <app-text-field
+    title="Last Name"
+    [hasError]="hasError(form.controls['lastName'])"
+    [errorText]="form.controls['lastName'].errors?.['pattern']?'Allowed characters : A-Za-z1-9./':''"
+    formControlName="lastName"
+  ></app-text-field>
+  <app-text-field
+    title="E-mail"
+    [hasError]="hasError(form.controls['email'])"
+    [errorText]="
+      form.controls['email'].errors?.['email'] ? 'Email address is invalid!' : ''
+    "
+    formControlName="email"
+  ></app-text-field>
+  <app-text-field
+    title="PhoneNumber"
+    type="number"
+    [hasError]="hasError(form.controls['phoneNumber'])"
+    [errorText]="form.controls['phoneNumber'].errors?.['badFormatNum']?'Bad format':''"
+    formControlName="phoneNumber"
+  ></app-text-field>
+  <app-text-field
+    title="Bank account number"
+    type="number"
+    [hasError]="hasError(form.controls['bankAccountNum'])"
+    [errorText]="form.controls['bankAccountNum'].errors?.['pattern']?'Format: XXXX-XXXX-XXXX-XXXX':''"
+    formControlName="bankAccountNum"
   ></app-text-field>
 </form>

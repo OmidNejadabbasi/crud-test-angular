@@ -22,6 +22,7 @@ export class TextFieldComponent implements OnInit, ControlValueAccessor {
   @Input() type: 'text' | 'password' | 'number' = 'text';
   @Input() hasError?: boolean;
   @Input() errorText?: string;
+  @Input() title?: string;
 
   @Input() formControlName: string | number | null = null;
 
@@ -59,8 +60,6 @@ export class TextFieldComponent implements OnInit, ControlValueAccessor {
 
   onValueChange(event: Event) {
     this.markAsTouched();
-    console.log((event.target as HTMLInputElement).value);
-
     this.onChange((event.target as HTMLInputElement).value);
   }
 }

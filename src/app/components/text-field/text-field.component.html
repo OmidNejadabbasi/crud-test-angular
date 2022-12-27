@@ -1,6 +1,7 @@
-<div>
+<div class="container">
+  <p>{{ title }}</p>
   <input
-    (input)="onValueChange($event)"
+    (change)="onValueChange($event)"
     [type]="type"
     [ngClass]="hasError ? 'error' : ''"
   />
