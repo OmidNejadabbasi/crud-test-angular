@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Customer } from '../../data/customer';
 import { hasError } from '../../utils/form-utils';
 import { numberValidatorOfRegion } from '../../validators/phone-number-validator';
 
@@ -26,4 +27,10 @@ export class CustomerFormComponent implements OnInit {
 
   ngOnInit(): void {}
   hasError = hasError;
+
+  onSave() {
+    if (!this.form.valid) return;
+    const customer: Customer = this.form.value;
+    console.log(customer);
+  }
 }

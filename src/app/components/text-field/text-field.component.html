@@ -4,6 +4,7 @@
     (change)="onValueChange($event)"
     [type]="type"
     [ngClass]="hasError ? 'error' : ''"
+    [disabled]="disabled"
   />
   <p *ngIf="hasError" class="err-text">{{ errorText }}</p>
 </div>

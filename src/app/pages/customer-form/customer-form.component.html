@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="onSave()">
   <app-text-field
     title="First Name"
     [hasError]="hasError(form.controls['firstName'])"
@@ -23,14 +23,22 @@
     title="PhoneNumber"
     type="number"
     [hasError]="hasError(form.controls['phoneNumber'])"
-    [errorText]="form.controls['phoneNumber'].errors?.['badFormatNum']?'Bad format':''"
+    [errorText]="form.controls['phoneNumber'].errors?.['badFormatNum']?'Format : 98xxxxxxx':''"
     formControlName="phoneNumber"
   ></app-text-field>
   <app-text-field
     title="Bank account number"
-    type="number"
     [hasError]="hasError(form.controls['bankAccountNum'])"
     [errorText]="form.controls['bankAccountNum'].errors?.['pattern']?'Format: XXXX-XXXX-XXXX-XXXX':''"
     formControlName="bankAccountNum"
   ></app-text-field>
+  <app-text-field
+    title="Birth Date"
+    type="date"
+    [hasError]="hasError(form.controls['dateOfBirth'])"
+    [errorText]="form.controls['dateOfBirth'].errors?.['required']?'Required':''"
+    formControlName="dateOfBirth"
+  ></app-text-field>
+
+  <button type="submit" class="btn-primary">Save</button>
 </form>

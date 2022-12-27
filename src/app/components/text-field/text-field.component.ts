@@ -19,14 +19,14 @@ import {
   ],
 })
 export class TextFieldComponent implements OnInit, ControlValueAccessor {
-  @Input() type: 'text' | 'password' | 'number' = 'text';
+  @Input() type: 'text' | 'password' | 'number' | 'date' = 'text';
   @Input() hasError?: boolean;
   @Input() errorText?: string;
   @Input() title?: string;
 
   @Input() formControlName: string | number | null = null;
 
-  value: string = '';
+  value: any = '';
   touched: boolean = false;
   disabled: boolean = false;
 
