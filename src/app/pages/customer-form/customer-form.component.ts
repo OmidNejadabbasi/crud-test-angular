@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Customer } from '../../data/customer';
+import { CustomerPoolService } from '../../services/customer-pool.service';
 import { hasError } from '../../utils/form-utils';
 import { numberValidatorOfRegion } from '../../validators/phone-number-validator';
 
@@ -11,6 +12,8 @@ const { required, pattern, maxLength, email } = Validators;
   styleUrls: ['./customer-form.component.css'],
 })
 export class CustomerFormComponent implements OnInit {
+  customerList: Customer[] = [];
+
   form: FormGroup = this.formBuilder.group({
     firstName: ['', [required, pattern('[a-zA-Z0-9.]+'), maxLength(50)]],
     lastName: ['', [required, pattern('[a-zA-Z0-9.]+'), maxLength(50)]],
@@ -23,14 +26,25 @@ export class CustomerFormComponent implements OnInit {
     ],
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private customerPoolService: CustomerPoolService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.customerPoolService.data().subscribe((data) => {
+      this.customerList = data;
+    });
+  }
   hasError = hasError;
 
   onSave() {
     if (!this.form.valid) return;
-    const customer: Customer = this.form.value;
-    console.log(customer);
+    try {
+      const customer: Customer = this.form.value;
+      this.customerPoolService.save(customer);
+    } catch (err) {
+      console.log('Email Already Exists');
+    }
   }
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Customer } from '../data/customer';
 import { LocalStorageCustomerRepository } from '../repositories/customer-repository-impl';
 
@@ -18,5 +19,9 @@ export class CustomerPoolService {
 
   canSave(customer: Customer): boolean {
     return this.customerRepo.exists(customer);
+  }
+
+  data(): Observable<Customer[]> {
+    return this.customerRepo.data();
   }
 }
