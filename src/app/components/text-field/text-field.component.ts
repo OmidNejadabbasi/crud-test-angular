@@ -31,13 +31,13 @@ export class TextFieldComponent implements OnInit, ControlValueAccessor {
   disabled: boolean = false;
 
   constructor() {}
-  writeValue(obj: string): void {
+  writeValue(obj: any): void {
     this.value = obj;
   }
-  onChange = (value: string) => {};
+  onChange = (value: any) => {};
   onTouched = () => {};
 
-  registerOnChange(onChange: (s: string) => void) {
+  registerOnChange(onChange: (s: any) => void) {
     this.onChange = onChange;
   }
 
