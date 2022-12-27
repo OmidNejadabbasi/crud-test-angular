@@ -1,0 +1,8 @@
+<div>
+  <input
+    (input)="onValueChange($event)"
+    [type]="type"
+    [ngClass]="hasError ? 'error' : ''"
+  />
+  <p *ngIf="hasError" class="err-text">{{ errorText }}</p>
+</div>

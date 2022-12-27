@@ -1,0 +1,22 @@
+input {
+  border-radius: 4px;
+  border: 0;
+  outline: #63e2e7 1px solid;
+  box-shadow: 0 0 5px -3px #7be2f077;
+  padding: 4px;
+  font-size: 1.5rem;
+}
+
+input:focus {
+  outline: #0c999e 1px solid;
+  box-shadow: 0 0 8px -1px #25a5b6;
+}
+
+input.error {
+  outline: #ff7979 2px solid;
+  box-shadow: 0 0 5px 1px #ff000067;
+}
+
+.err-text {
+  color: #ff2a2a;
+}

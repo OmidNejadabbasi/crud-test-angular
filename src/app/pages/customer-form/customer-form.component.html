@@ -1,2 +1,11 @@
-<p>customer-form works!</p>
-<h1>Hello!!!</h1>
+<form [formGroup]="form">
+  <app-text-field
+    [ngClass]="['error']"
+    [hasError]="
+      form.controls['firstName'].invalid &&
+      (form.controls['firstName'].dirty || form.controls['firstName'].touched)
+    "
+    [errorText]="form.controls['firstName'].errors?.['pattern']?'Allowed characters : A-Za-z1-9./':''"
+    formControlName="firstName"
+  ></app-text-field>
+</form>
