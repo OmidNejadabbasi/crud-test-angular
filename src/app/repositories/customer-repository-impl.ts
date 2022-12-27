@@ -19,13 +19,18 @@ export class LocalStorageCustomerRepository implements CustomerRepository {
     });
   }
 
-  put(customer: Customer): void | never {
+  put(customer: Customer): boolean | never {
     if (this.exists(customer)) throw new Error('The customer already exists');
 
     this.array.push(customer);
+    return true;
   }
-  delete(customer: Customer): void {
-    this.array = this.array.filter((e) => e.email !== customer.email);
+  delete(customer: Customer): boolean {
+    if (this.exists(customer)) {
+      this.array = this.array.filter((e) => e.email !== customer.email);
+      return true;
+    }
+    return false;
   }
 }
 

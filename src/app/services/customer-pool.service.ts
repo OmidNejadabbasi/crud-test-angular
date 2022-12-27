@@ -8,12 +8,12 @@ import { LocalStorageCustomerRepository } from '../repositories/customer-reposit
 export class CustomerPoolService {
   constructor(private customerRepo: LocalStorageCustomerRepository) {}
 
-  save(customer: Customer): void | never {
-    this.customerRepo.put(customer);
+  save(customer: Customer): boolean | never {
+    return this.customerRepo.put(customer);
   }
 
-  delete(customer: Customer): void {
-    this.customerRepo.delete(customer);
+  delete(customer: Customer): boolean {
+    return this.customerRepo.delete(customer);
   }
 
   canSave(customer: Customer): boolean {
